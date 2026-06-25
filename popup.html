@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Sohbet Hızlandırıcı</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+<div id="mainView" class="view">
+
+  <header class="strip">
+    <div class="strip-left">
+      <div class="strip-mark">Ş</div>
+      <span class="strip-name">Sohbet Hızlandırıcı</span>
+      <span class="strip-ver">v2.0</span>
+    </div>
+    <div class="strip-status">
+      <span class="strip-dot" id="statusDot"></span>
+      <span id="statusText">Hazırlanıyor</span>
+    </div>
+  </header>
+
+  <section class="hero">
+    <span class="hero-tag">chatgpt</span>
+    <h1>Yavaş sohbetleri <em>uçur.</em></h1>
+    <p class="hero-desc">Uzun konuşmalarda eski mesajları arka planda tutar. Tarayıcı rahatlar, sen fark etmezsin.</p>
+  </section>
+
+  <div class="metrics">
+    <div class="metric">
+      <div class="metric-num metric-num--accent" id="renderedCount">—</div>
+      <div class="metric-label" data-i18n="renderedLabel"></div>
+    </div>
+    <div class="metric">
+      <div class="metric-num" id="totalCount">—</div>
+      <div class="metric-label" data-i18n="totalLabel"></div>
+    </div>
+    <div class="metric">
+      <div class="metric-num metric-num--accent" id="memorySaved">—</div>
+      <div class="metric-label" data-i18n="memorySavedLabel"></div>
+    </div>
+  </div>
+  <div class="progress-line"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+  <div class="progress-info">
+    <span id="progressInfo" class="empty" data-i18n="progressInfoEmpty"></span>
+    <span id="progressInfo2"></span>
+  </div>
+
+  <section class="section">
+    <div class="section-head">
+      <span class="section-title" data-i18n="autoScrollLabel"></span>
+      <span class="section-meta">/01</span>
+    </div>
+    <div class="row">
+      <div class="row-text">
+        <div class="row-name" data-i18n="autoScrollLabel"></div>
+        <div class="row-sub" data-i18n="autoScrollSub"></div>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="enabled">
+        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+      </label>
+    </div>
+    <div class="row">
+      <div class="row-text">
+        <div class="row-name" data-i18n="keepLastLabel"></div>
+        <div class="row-sub" id="limitHint"></div>
+      </div>
+      <div class="stepper">
+        <button class="stepper-btn" id="limitDec"><svg width="10" height="10" viewBox="0 0 10 10"><line x1="2" y1="5" x2="8" y2="5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+        <input class="stepper-input" id="limitDisplay" type="number" value="30" min="1" max="5000">
+        <button class="stepper-btn" id="limitInc"><svg width="10" height="10" viewBox="0 0 10 10"><line x1="5" y1="2" x2="5" y2="8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><line x1="2" y1="5" x2="8" y2="5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="row-text">
+        <div class="row-name" data-i18n="chunkSizeLabel"></div>
+        <div class="row-sub" data-i18n="chunkSizeSub"></div>
+      </div>
+      <div class="stepper">
+        <button class="stepper-btn" id="chunkDec"><svg width="10" height="10" viewBox="0 0 10 10"><line x1="2" y1="5" x2="8" y2="5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+        <input class="stepper-input" id="chunkDisplay" type="number" value="10" min="1" max="100">
+        <button class="stepper-btn" id="chunkInc"><svg width="10" height="10" viewBox="0 0 10 10"><line x1="5" y1="2" x2="5" y2="8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><line x1="2" y1="5" x2="8" y2="5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-row">
+    <button class="btn btn-primary" id="trimNow">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>
+      <span data-i18n="optimizeNow"></span>
+    </button>
+    <button class="btn btn-ghost" id="loadOlder">
+      <span data-i18n="loadOlder"></span>
+    </button>
+    <button class="btn-icon" id="hotReload" title="Yenile">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M1 4v6h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.51 15a9 9 0 1 0 .49-4.95L1 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+
+  <footer class="footer">
+    <button class="footer-link" id="resetDefaults" data-i18n="resetDefaults"></button>
+    <span class="footer-hash">// ready</span>
+  </footer>
+</div>
+
+<div id="blockedView" class="view hidden">
+  <div class="blocked">
+    <div class="blocked-mark">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h2>Burada <em>boş</em> duruyor.</h2>
+    <p data-i18n="notOnChatGPTSub"></p>
+    <button class="btn btn-primary blocked-btn" id="openChatgpt">
+      <span data-i18n="openChatGPT"></span>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+</div>
+
+<script src="popup.js"></script>
+</body>
+</html>

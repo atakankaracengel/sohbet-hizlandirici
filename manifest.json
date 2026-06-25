@@ -1,0 +1,16 @@
+{
+  "action": { "default_popup": "popup.html" },
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [
+    { "js": ["mainWorld.js"], "matches": ["https://chatgpt.com/*", "https://chat.openai.com/*"], "run_at": "document_start", "world": "MAIN" },
+    { "css": ["ui.css"], "js": ["content.js"], "matches": ["https://chatgpt.com/*", "https://chat.openai.com/*"], "run_at": "document_idle" }
+  ],
+  "description": "Keeps ChatGPT fast in long conversations by hiding older messages. No login, no limits.",
+  "host_permissions": ["https://chatgpt.com/*", "https://chat.openai.com/*"],
+  "icons": { "16": "img/16.png", "32": "img/32.png", "48": "img/48.png", "128": "img/128.png" },
+  "manifest_version": 3,
+  "name": "ChatGPT Hızlandırıcı",
+  "default_locale": "en",
+  "permissions": ["storage"],
+  "version": "2.0.0"
+}
