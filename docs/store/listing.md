@@ -55,6 +55,7 @@ GİZLİLİK
 • Ayarlar sadece chrome.storage.sync ile senkronize
 
 LİSANS: MIT — açık kaynak
+**YAZAR**: Atakan Karaçengel
 ```
 
 **Kategori**: Üretkenlik (Productivity)
@@ -117,6 +118,7 @@ PRIVACY
 • Settings sync via chrome.storage.sync only
 
 LICENSE: MIT — open source
+**AUTHOR**: Atakan Karaçengel
 ```
 
 **Category**: Productivity
