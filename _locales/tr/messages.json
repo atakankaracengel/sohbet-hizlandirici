@@ -1,4 +1,6 @@
 {
+  "extName":            { "message": "ChatGPT Hızlandırıcı" },
+  "extDescription":     { "message": "ChatGPT'nin uzun sohbetlerde yavaşlamasını çözer. Eski mesajları gizler, giriş yok, sınırsız." },
   "activeToast":        { "message": "Optimize Edildi" },
   "autoScrollLabel":    { "message": "Performans Modu" },
   "autoScrollSub":      { "message": "Performans modunu aç veya kapat" },

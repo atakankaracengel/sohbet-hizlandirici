@@ -1,4 +1,6 @@
 {
+  "extName":{"message":"ChatGPT Speed Booster"},
+  "extDescription":{"message":"Keeps ChatGPT fast in long conversations by hiding older messages. No login, no limits."},
   "activeToast":{"message":"Optimized"},
   "autoScrollLabel":{"message":"Performance Mode"},
   "autoScrollSub":{"message":"Enable or disable performance mode"},
